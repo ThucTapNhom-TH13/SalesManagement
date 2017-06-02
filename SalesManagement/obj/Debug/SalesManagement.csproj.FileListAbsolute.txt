@@ -1,0 +1,16 @@
+D:\Github\SalesManagement\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe.config
+D:\Github\SalesManagement\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe
+D:\Github\SalesManagement\SalesManagement\SalesManagement\bin\Debug\SalesManagement.pdb
+D:\Github\SalesManagement\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csprojResolveAssemblyReference.cache
+D:\Github\SalesManagement\SalesManagement\SalesManagement\obj\Debug\SalesManagement.MainForm.resources
+D:\Github\SalesManagement\SalesManagement\SalesManagement\obj\Debug\SalesManagement.Properties.Resources.resources
+D:\Github\SalesManagement\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csproj.GenerateResource.Cache
+D:\Github\SalesManagement\SalesManagement\SalesManagement\obj\Debug\SalesManagement.exe
+D:\Github\SalesManagement\SalesManagement\SalesManagement\obj\Debug\SalesManagement.pdb
+D:\Learning Projects\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe.config
+D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.exe
+D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.pdb
+D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csprojResolveAssemblyReference.cache
+D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.MainForm.resources
+D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.Properties.Resources.resources
+D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csproj.GenerateResource.Cache
