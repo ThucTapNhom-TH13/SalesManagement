@@ -356,7 +356,7 @@
             this.employeesDeleteButton.TabIndex = 2;
             this.employeesDeleteButton.Text = "Xóa";
             this.employeesDeleteButton.UseVisualStyleBackColor = true;
-            this.employeesDeleteButton.Click += new System.EventHandler(this.employeesDeleteButton_Click);
+            
             // 
             // employeesEditButton
             // 
@@ -366,7 +366,7 @@
             this.employeesEditButton.TabIndex = 2;
             this.employeesEditButton.Text = "Sửa";
             this.employeesEditButton.UseVisualStyleBackColor = true;
-            this.employeesEditButton.Click += new System.EventHandler(this.employeesEditButton_Click);
+            
             // 
             // employeesAddButton
             // 
@@ -376,7 +376,7 @@
             this.employeesAddButton.TabIndex = 2;
             this.employeesAddButton.Text = "Thêm";
             this.employeesAddButton.UseVisualStyleBackColor = true;
-            this.employeesAddButton.Click += new System.EventHandler(this.employeesAddButton_Click);
+            
             // 
             // groupBox3
             // 
@@ -496,7 +496,7 @@
             this.employeesDataGridView.ReadOnly = true;
             this.employeesDataGridView.Size = new System.Drawing.Size(517, 278);
             this.employeesDataGridView.TabIndex = 0;
-            this.employeesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.employeesDataGridView_CellClick);
+           
             // 
             // tabPage2
             // 
@@ -521,7 +521,7 @@
             this.customersDeleteButton.TabIndex = 2;
             this.customersDeleteButton.Text = "Xóa";
             this.customersDeleteButton.UseVisualStyleBackColor = true;
-            this.customersDeleteButton.Click += new System.EventHandler(this.customersDeleteButton_Click);
+           
             // 
             // customersEditButton
             // 
@@ -531,7 +531,7 @@
             this.customersEditButton.TabIndex = 2;
             this.customersEditButton.Text = "Sửa";
             this.customersEditButton.UseVisualStyleBackColor = true;
-            this.customersEditButton.Click += new System.EventHandler(this.customersEditButton_Click);
+           
             // 
             // customersAddButton
             // 
@@ -541,7 +541,7 @@
             this.customersAddButton.TabIndex = 2;
             this.customersAddButton.Text = "Thêm";
             this.customersAddButton.UseVisualStyleBackColor = true;
-            this.customersAddButton.Click += new System.EventHandler(this.customersAddButton_Click);
+           
             // 
             // groupBox5
             // 
@@ -643,7 +643,7 @@
             this.CustomersDataGridView.ReadOnly = true;
             this.CustomersDataGridView.Size = new System.Drawing.Size(517, 278);
             this.CustomersDataGridView.TabIndex = 0;
-            this.CustomersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CustomersDataGridView_CellClick);
+            
             // 
             // tabPage3
             // 
@@ -668,7 +668,7 @@
             this.categoriesDeleteButton.TabIndex = 2;
             this.categoriesDeleteButton.Text = "Xóa";
             this.categoriesDeleteButton.UseVisualStyleBackColor = true;
-            this.categoriesDeleteButton.Click += new System.EventHandler(this.CategoriesDeleteButton_Click);
+            
             // 
             // categoriesEditButton
             // 
@@ -678,7 +678,7 @@
             this.categoriesEditButton.TabIndex = 2;
             this.categoriesEditButton.Text = "Sửa";
             this.categoriesEditButton.UseVisualStyleBackColor = true;
-            this.categoriesEditButton.Click += new System.EventHandler(this.CategoriesEditButton_Click);
+            
             // 
             // categoriesAddButton
             // 
@@ -688,7 +688,7 @@
             this.categoriesAddButton.TabIndex = 2;
             this.categoriesAddButton.Text = "Thêm";
             this.categoriesAddButton.UseVisualStyleBackColor = true;
-            this.categoriesAddButton.Click += new System.EventHandler(this.CategoriesAddButton_Click);
+           
             // 
             // groupBox7
             // 
@@ -772,7 +772,7 @@
             this.categoriesDataGridView.ReadOnly = true;
             this.categoriesDataGridView.Size = new System.Drawing.Size(517, 278);
             this.categoriesDataGridView.TabIndex = 0;
-            this.categoriesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CategoriesDataGridView_CellClick);
+            
             // 
             // tabPage4
             // 
@@ -797,7 +797,7 @@
             this.productsDeleteButton.TabIndex = 2;
             this.productsDeleteButton.Text = "Xóa";
             this.productsDeleteButton.UseVisualStyleBackColor = true;
-            this.productsDeleteButton.Click += new System.EventHandler(this.ProductsDeleteButton_Click);
+           
             // 
             // productsEditButton
             // 
@@ -807,7 +807,7 @@
             this.productsEditButton.TabIndex = 2;
             this.productsEditButton.Text = "Sửa";
             this.productsEditButton.UseVisualStyleBackColor = true;
-            this.productsEditButton.Click += new System.EventHandler(this.ProductsEditButton_Click);
+           
             // 
             // productsAddButton
             // 
@@ -817,7 +817,7 @@
             this.productsAddButton.TabIndex = 2;
             this.productsAddButton.Text = "Thêm";
             this.productsAddButton.UseVisualStyleBackColor = true;
-            this.productsAddButton.Click += new System.EventHandler(this.ProductsAddButton_Click);
+           
             // 
             // groupBox9
             // 
@@ -957,7 +957,7 @@
             this.productsDataGridView.ReadOnly = true;
             this.productsDataGridView.Size = new System.Drawing.Size(517, 278);
             this.productsDataGridView.TabIndex = 0;
-            this.productsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsDataGridView_CellClick);
+           
             // 
             // tabPage5
             // 
@@ -982,7 +982,7 @@
             this.ordersDeleteButton.TabIndex = 2;
             this.ordersDeleteButton.Text = "Xóa";
             this.ordersDeleteButton.UseVisualStyleBackColor = true;
-            this.ordersDeleteButton.Click += new System.EventHandler(this.OrdersDeleteButton_Click);
+            
             // 
             // ordersEditButton
             // 
@@ -992,7 +992,7 @@
             this.ordersEditButton.TabIndex = 2;
             this.ordersEditButton.Text = "Sửa";
             this.ordersEditButton.UseVisualStyleBackColor = true;
-            this.ordersEditButton.Click += new System.EventHandler(this.OrdersEditButton_Click);
+            
             // 
             // ordersAddButton
             // 
@@ -1002,7 +1002,7 @@
             this.ordersAddButton.TabIndex = 2;
             this.ordersAddButton.Text = "Thêm";
             this.ordersAddButton.UseVisualStyleBackColor = true;
-            this.ordersAddButton.Click += new System.EventHandler(this.OrdersAddButton_Click);
+           
             // 
             // groupBox11
             // 
@@ -1106,7 +1106,7 @@
             this.OrdersDataGridView.ReadOnly = true;
             this.OrdersDataGridView.Size = new System.Drawing.Size(517, 278);
             this.OrdersDataGridView.TabIndex = 0;
-            this.OrdersDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrdersDataGridView_CellClick);
+          
             // 
             // tabPage6
             // 
@@ -1131,7 +1131,7 @@
             this.orderDetailsDeleteButton.TabIndex = 2;
             this.orderDetailsDeleteButton.Text = "Xóa";
             this.orderDetailsDeleteButton.UseVisualStyleBackColor = true;
-            this.orderDetailsDeleteButton.Click += new System.EventHandler(this.OrderDetailsDeleteButton_Click);
+            
             // 
             // orderDetailsEditButton
             // 
@@ -1141,7 +1141,7 @@
             this.orderDetailsEditButton.TabIndex = 2;
             this.orderDetailsEditButton.Text = "Sửa";
             this.orderDetailsEditButton.UseVisualStyleBackColor = true;
-            this.orderDetailsEditButton.Click += new System.EventHandler(this.OrderDetailsEditButton_Click);
+            
             // 
             // orderDetailsAddButton
             // 
@@ -1151,7 +1151,7 @@
             this.orderDetailsAddButton.TabIndex = 2;
             this.orderDetailsAddButton.Text = "Thêm";
             this.orderDetailsAddButton.UseVisualStyleBackColor = true;
-            this.orderDetailsAddButton.Click += new System.EventHandler(this.OrderDetailsAddButton_Click);
+       
             // 
             // groupBox13
             // 
@@ -1189,7 +1189,7 @@
             this.comboBoxOrderDetailsOrderId.Name = "comboBoxOrderDetailsOrderId";
             this.comboBoxOrderDetailsOrderId.Size = new System.Drawing.Size(149, 21);
             this.comboBoxOrderDetailsOrderId.TabIndex = 2;
-            this.comboBoxOrderDetailsOrderId.SelectedIndexChanged += new System.EventHandler(this.comboBoxOrderDetailsOrderId_SelectedIndexChanged);
+          
             // 
             // textBoxOrderDetailsPrice
             // 
@@ -1250,7 +1250,7 @@
             this.orderDetailsDataGridView.ReadOnly = true;
             this.orderDetailsDataGridView.Size = new System.Drawing.Size(517, 278);
             this.orderDetailsDataGridView.TabIndex = 0;
-            this.orderDetailsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OrderDetailsDataGridView_CellClick);
+           
             // 
             // label31
             // 

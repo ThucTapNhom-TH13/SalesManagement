@@ -122,6 +122,66 @@ namespace SalesManagement
         }
 
         /*************************************  Module 1: Suppliers - Start. *************************************/
+        private void displayEmployees()
+        {
+            // set DataSource for employees data gridview
+            employeesDataGridView.DataSource = EmployeesBUS.getEmployeesDataTable();
+
+            // get employees info.
+            updateEmployeesInfo();
+        }
+
+
+        private void updateEmployeesInfo()
+        {
+            int currentIndex;
+            if (employeesDataGridView.CurrentCell != null)
+            {
+                currentIndex = employeesDataGridView.CurrentCell.RowIndex;
+            }
+            else
+            {
+                currentIndex = 0;
+            }
+
+            if (employeesDataGridView.Rows[currentIndex].Cells[0].Value != null)
+            {
+                textBoxEmployeeId.Text = employeesDataGridView.Rows[currentIndex].Cells[0].Value.ToString();
+            }
+            if (employeesDataGridView.Rows[currentIndex].Cells[1].Value != null)
+            {
+                textBoxEmployeeName.Text = employeesDataGridView.Rows[currentIndex].Cells[1].Value.ToString();
+            }
+            if (employeesDataGridView.Rows[currentIndex].Cells[2].Value != null)
+            {
+                String[] dateTime = employeesDataGridView.Rows[currentIndex].Cells[2].Value.ToString().Split('/', ' ');
+                if (dateTime.Length > 2)
+                {
+                    DateTime date = new DateTime(Int32.Parse(dateTime[2]), Int32.Parse(dateTime[0]), Int32.Parse(dateTime[1]));
+                    dateTimePickerEmployeeBirthDate.Value = date;
+                }
+            }
+            if (employeesDataGridView.Rows[currentIndex].Cells[3].Value != null)
+            {
+                textBoxEmployeeAddress.Text = employeesDataGridView.Rows[currentIndex].Cells[3].Value.ToString();
+            }
+            if (employeesDataGridView.Rows[currentIndex].Cells[4].Value != null)
+            {
+                textBoxEmployeePhone.Text = employeesDataGridView.Rows[currentIndex].Cells[4].Value.ToString();
+            }
+        }
+        private Employee getEmployeeFromInfoViews()
+        {
+            int id = textBoxEmployeeId.Text.Equals("") ? -1 : Int32.Parse(textBoxEmployeeId.Text);
+            string name = textBoxEmployeeName.Text;
+            DateTime birth = dateTimePickerEmployeeBirthDate.Value;
+            string address = textBoxEmployeeAddress.Text;
+            string phone = textBoxEmployeePhone.Text;
+
+            Employee employee = new Employee(id, name, birth, address, phone);
+
+            return employee;
+        }
         private void displaySuppliers()
         {
             // set DataSource for suppliers data gridview
@@ -275,28 +335,28 @@ namespace SalesManagement
 
         private void suppliersAddButton_Click(object sender, EventArgs e)
         {
-            switch (suppliersTabAction)
+            switch (employeesTabAction)
             {
                 case ACTION_VIEW:
-                    suppliersTabAction = ACTION_ADD;
-                    changeTabButtonsMode(TAB_SUPPLIERS, ACTION_ADD);
-                    clearInfoViews(suppliersInfoViews);
+                    employeesTabAction = ACTION_ADD;
+                    changeTabButtonsMode(TAB_EMPLOYEES, ACTION_ADD);
+                    clearInfoViews(employeesInfoViews);
                     break;
                 case ACTION_ADD:
-                    suppliersTabAction = ACTION_VIEW;
-                    Supplier supplier1 = getSupplierFromInfoViews();
-                    SuppliersBUS.addSupplier(supplier1);
-                    displaySuppliers();
-                    updateProductsComboBoxes();
-                    changeTabButtonsMode(TAB_SUPPLIERS, ACTION_VIEW);
+                    employeesTabAction = ACTION_VIEW;
+                    Employee employee1 = getEmployeeFromInfoViews();
+                    EmployeesBUS.addEmployee(employee1);
+                    displayEmployees();
+                    updateOrdersComboBoxes();
+                    changeTabButtonsMode(TAB_EMPLOYEES, ACTION_VIEW);
                     break;
                 case ACTION_EDIT:
-                    suppliersTabAction = ACTION_VIEW;
-                    Supplier supplier2 = getSupplierFromInfoViews();
-                    SuppliersBUS.editSupplier(supplier2);
-                    displaySuppliers();
-                    updateProductsComboBoxes();
-                    changeTabButtonsMode(TAB_SUPPLIERS, ACTION_VIEW);
+                    employeesTabAction = ACTION_VIEW;
+                    Employee employee2 = getEmployeeFromInfoViews();
+                    EmployeesBUS.editEmployee(employee2);
+                    displayEmployees();
+                    updateOrdersComboBoxes();
+                    changeTabButtonsMode(TAB_EMPLOYEES, ACTION_VIEW);
                     break;
             }
         }
@@ -385,5 +445,299 @@ namespace SalesManagement
                 MessageBox.Show("Chọn nhà cung cấp cần xóa!");
             }
         }
+
+        /***********************************  Module 6: Orders - Start. ************************************/
+
+        private void displayOrders()
+        {
+            OrdersDataGridView.DataSource = OrdersBUS.getOrdersDataTable();
+
+            updateOrderInfo();
+
+            updateOrdersComboBoxes();
+        }
+
+        private void updateOrdersComboBoxes()
+        {
+            OrdersBUS.loadCombobox(1, comboBoxOrdersCustomerId);
+            OrdersBUS.loadCombobox(2, comboBoxOrdersEmployeeId);
+        }
+
+        private void updateOrderInfo()
+        {
+            int currentIndex;
+            if (OrdersDataGridView.CurrentCell != null)
+            {
+                currentIndex = OrdersDataGridView.CurrentCell.RowIndex;
+            }
+            else
+            {
+                currentIndex = 0;
+            }
+
+            if (OrdersDataGridView.Rows[currentIndex].Cells[0].Value != null)
+            {
+                textBoxOrderId.Text = OrdersDataGridView.Rows[currentIndex].Cells[0].Value.ToString();
+            }
+            if (OrdersDataGridView.Rows[currentIndex].Cells[1].Value != null)
+            {
+                comboBoxOrdersCustomerId.Text = OrdersDataGridView.Rows[currentIndex].Cells[1].Value.ToString();
+            }
+            if (OrdersDataGridView.Rows[currentIndex].Cells[2].Value != null)
+            {
+                comboBoxOrdersEmployeeId.Text = OrdersDataGridView.Rows[currentIndex].Cells[2].Value.ToString();
+            }
+            if (OrdersDataGridView.Rows[currentIndex].Cells[3].Value != null)
+            {
+                String[] dateTime = OrdersDataGridView.Rows[currentIndex].Cells[3].Value.ToString().Split('/', ' ');
+                if (dateTime.Length > 2)
+                {
+                    DateTime date = new DateTime(Int32.Parse(dateTime[2]), Int32.Parse(dateTime[0]), Int32.Parse(dateTime[1]));
+                    dateTimePickerOrderDate.Value = date;
+                }
+                else
+                {
+                    dateTimePickerOrderDate.Value = DateTime.UtcNow;
+                }
+            }
+
+        }
+
+        private Order getOrderFromInfoViews()
+        {
+            int id = textBoxOrderId.Text.Equals("") ? -1 : Int32.Parse(textBoxOrderId.Text);
+            int customerId = comboBoxOrdersCustomerId.Text.Equals("") ? -1 : Int32.Parse(comboBoxOrdersCustomerId.Text);
+            int employeeId = comboBoxOrdersEmployeeId.Text.Equals("") ? -1 : Int32.Parse(comboBoxOrdersEmployeeId.Text);
+            DateTime date = dateTimePickerOrderDate.Value;
+
+
+            Order order = new Order(id, customerId, employeeId, date);
+
+            return order;
+        }
+
+        private void comboBoxOrderDetailsOrderId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = comboBoxOrderDetailsOrderId.Text.Equals("") ? -1 :
+                Int32.Parse(comboBoxOrderDetailsOrderId.Text);
+            comboBoxOrderDetailsProductId.Text = "";
+            updateOrderDetailsComboBoxes(2, id, comboBoxOrderDetailsProductId);
+        }
+
+        private void OrdersEditButton_Click(object sender, EventArgs e)
+        {
+            switch (ordersTabAction)
+            {
+                case ACTION_ADD:
+                case ACTION_EDIT:
+                    ordersTabAction = ACTION_VIEW;
+                    changeTabButtonsMode(TAB_ORDERS, ACTION_VIEW);
+                    displayOrders();
+                    break;
+                case ACTION_VIEW:
+                    ordersTabAction = ACTION_EDIT;
+                    changeTabButtonsMode(TAB_ORDERS, ACTION_EDIT);
+                    break;
+            }
+
+        }
+
+        private void OrdersDeleteButton_Click(object sender, EventArgs e)
+        {
+            int id = textBoxOrderId.Text.Equals("") ? -1 : Int32.Parse(textBoxOrderId.Text);
+            if (id > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa hóa đơn số " + id + " không?",
+                    "Xoá hóa đơn", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    OrdersBUS.deleteOrder(id);
+                    displayOrders();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Do nothing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn hóa đơn cần xóa!");
+            }
+
+        }
+
+        private void OrdersDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            updateOrderInfo();
+        }
+
+        private void OrdersAddButton_Click(object sender, EventArgs e)
+        {
+            switch (ordersTabAction)
+            {
+                case ACTION_VIEW:
+                    ordersTabAction = ACTION_ADD;
+                    changeTabButtonsMode(TAB_ORDERS, ACTION_ADD);
+                    clearInfoViews(ordersInfoViews);
+                    break;
+                case ACTION_ADD:
+                    ordersTabAction = ACTION_VIEW;
+                    Order order1 = getOrderFromInfoViews();
+                    OrdersBUS.addOrder(order1);
+                    displayOrders();
+                    changeTabButtonsMode(TAB_ORDERS, ACTION_VIEW);
+                    break;
+                case ACTION_EDIT:
+                    ordersTabAction = ACTION_VIEW;
+                    Order order2 = getOrderFromInfoViews();
+                    OrdersBUS.editOrder(order2);
+                    displayOrders();
+                    changeTabButtonsMode(TAB_ORDERS, ACTION_VIEW);
+                    break;
+            }
+        }
+
+        /***********************************  Module 6: Orders - End. ************************************/
+
+        /*******************************  Module 7: Order Details - Start. *******************************/
+
+        private void displayOrderDetails()
+        {
+            orderDetailsDataGridView.DataSource = OrderDetailsBUS.getOrderDetailsDataTable();
+
+            updateOrderDetailInfo();
+
+            updateOrderDetailsComboBoxes(1, 0, comboBoxOrderDetailsOrderId);
+        }
+
+        private void updateOrderDetailsComboBoxes(int key, int id, ComboBox comboBox)
+        {
+            OrderDetailsBUS.loadCombobox(key, id, comboBox);
+        }
+
+        private void updateOrderDetailInfo()
+        {
+            int currentIndex;
+            if (orderDetailsDataGridView.CurrentCell != null)
+            {
+                currentIndex = orderDetailsDataGridView.CurrentCell.RowIndex;
+            }
+            else
+            {
+                currentIndex = 0;
+            }
+
+            if (orderDetailsDataGridView.Rows[currentIndex].Cells[0].Value != null)
+            {
+                comboBoxOrderDetailsOrderId.Text = orderDetailsDataGridView.Rows[currentIndex].Cells[0].Value.ToString();
+            }
+            if (orderDetailsDataGridView.Rows[currentIndex].Cells[1].Value != null)
+            {
+                comboBoxOrderDetailsProductId.Text = orderDetailsDataGridView.Rows[currentIndex].Cells[1].Value.ToString();
+            }
+            if (orderDetailsDataGridView.Rows[currentIndex].Cells[2].Value != null)
+            {
+                textBoxOrderDetailsPrice.Text = orderDetailsDataGridView.Rows[currentIndex].Cells[2].Value.ToString();
+            }
+            if (orderDetailsDataGridView.Rows[currentIndex].Cells[3].Value != null)
+            {
+                textBoxOrderDetailsQuantity.Text = orderDetailsDataGridView.Rows[currentIndex].Cells[3].Value.ToString();
+            }
+            if (orderDetailsDataGridView.Rows[currentIndex].Cells[4].Value != null)
+            {
+                textBoxOrderDetailsDiscount.Text = orderDetailsDataGridView.Rows[currentIndex].Cells[4].Value.ToString();
+            }
+        }
+
+        private OrderDetail getOrderDetailFromInfoViews()
+        {
+            int orderId = comboBoxOrderDetailsOrderId.Text.Equals("") ? -1 : Int32.Parse(comboBoxOrderDetailsOrderId.Text);
+            int productId = comboBoxOrderDetailsProductId.Text.Equals("") ? -1 : Int32.Parse(comboBoxOrderDetailsProductId.Text);
+            decimal price = textBoxOrderDetailsPrice.Text.Equals("") ? -1 : decimal.Parse(textBoxOrderDetailsPrice.Text);
+            int quantity = textBoxOrderDetailsQuantity.Text.Equals("") ? -1 : Int32.Parse(textBoxOrderDetailsQuantity.Text);
+            decimal discount = textBoxOrderDetailsDiscount.Text.Equals("") ? -1 : decimal.Parse(textBoxOrderDetailsDiscount.Text);
+
+            OrderDetail order = new OrderDetail(orderId, productId, price, quantity, discount);
+
+            return order;
+        }
+
+        private void OrderDetailsEditButton_Click(object sender, EventArgs e)
+        {
+            switch (orderDetailsTabAction)
+            {
+                case ACTION_ADD:
+                case ACTION_EDIT:
+                    orderDetailsTabAction = ACTION_VIEW;
+                    changeTabButtonsMode(TAB_ORDER_DETAILS, ACTION_VIEW);
+                    displayOrderDetails();
+                    break;
+                case ACTION_VIEW:
+                    orderDetailsTabAction = ACTION_EDIT;
+                    changeTabButtonsMode(TAB_ORDER_DETAILS, ACTION_EDIT);
+                    break;
+            }
+
+        }
+
+        private void OrderDetailsDeleteButton_Click(object sender, EventArgs e)
+        {
+            int id = comboBoxOrderDetailsOrderId.Text.Equals("") ? -1 : Int32.Parse(comboBoxOrderDetailsOrderId.Text);
+            int id1 = comboBoxOrderDetailsProductId.Text.Equals("") ? -1 : Int32.Parse(comboBoxOrderDetailsProductId.Text);
+            if (id > 0 && id1 > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa chi tiết hóa đơn này không?",
+                    "Xoá chi tiết hóa đơn", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    OrderDetailsBUS.deleteOrderDetail(id, id1);
+                    displayOrderDetails();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Do nothing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn chi tiết hóa đơn cần xóa!");
+            }
+
+        }
+
+        private void OrderDetailsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            updateOrderDetailInfo();
+        }
+
+        private void OrderDetailsAddButton_Click(object sender, EventArgs e)
+        {
+            switch (orderDetailsTabAction)
+            {
+                case ACTION_VIEW:
+                    orderDetailsTabAction = ACTION_ADD;
+                    changeTabButtonsMode(TAB_ORDER_DETAILS, ACTION_ADD);
+                    clearInfoViews(orderDetailsInfoViews);
+                    break;
+                case ACTION_ADD:
+                    orderDetailsTabAction = ACTION_VIEW;
+                    OrderDetail od = getOrderDetailFromInfoViews();
+                    OrderDetailsBUS.addOrderDetail(od);
+                    displayOrderDetails();
+                    changeTabButtonsMode(TAB_ORDER_DETAILS, ACTION_VIEW);
+                    break;
+                case ACTION_EDIT:
+                    orderDetailsTabAction = ACTION_VIEW;
+                    OrderDetail od1 = getOrderDetailFromInfoViews();
+                    OrderDetailsBUS.editOrderDetail(od1);
+                    displayOrderDetails();
+                    changeTabButtonsMode(TAB_ORDER_DETAILS, ACTION_VIEW);
+                    break;
+            }
+        }
+
+        /*******************************  Module 7: Order Details - End. ********************************/
+
+
     }
 }
