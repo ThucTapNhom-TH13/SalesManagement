@@ -15,3 +15,4 @@ D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.M
 D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.Properties.Resources.resources
 D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csproj.GenerateResource.Cache
 C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe.config
+C:\Users\Linh\Documents\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe.config
