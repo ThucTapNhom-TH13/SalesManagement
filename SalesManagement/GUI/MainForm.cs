@@ -808,6 +808,81 @@ namespace SalesManagement
             updateOrderDetailsComboBoxes(2, id, comboBoxOrderDetailsProductId);
         }
 
+        private void suppliersTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void employeesAddButton_Click(object sender, EventArgs e)
+        {
+            switch (employeesTabAction)
+            {
+                case ACTION_VIEW:
+                    employeesTabAction = ACTION_ADD;
+                    changeTabButtonsMode(TAB_EMPLOYEES, ACTION_ADD);
+                    clearInfoViews(employeesInfoViews);
+                    break;
+                case ACTION_ADD:
+                    employeesTabAction = ACTION_VIEW;
+                    Employee employee1 = getEmployeeFromInfoViews();
+                    EmployeesBUS.addEmployee(employee1);
+                    displayEmployees();
+                    updateOrdersComboBoxes();
+                    changeTabButtonsMode(TAB_EMPLOYEES, ACTION_VIEW);
+                    break;
+                case ACTION_EDIT:
+                    employeesTabAction = ACTION_VIEW;
+                    Employee employee2 = getEmployeeFromInfoViews();
+                    EmployeesBUS.editEmployee(employee2);
+                    displayEmployees();
+                    updateOrdersComboBoxes();
+                    changeTabButtonsMode(TAB_EMPLOYEES, ACTION_VIEW);
+                    break;
+            }
+        }
+
+        private void employeesEditButton_Click(object sender, EventArgs e)
+        {
+            switch (employeesTabAction)
+            {
+                case ACTION_ADD:
+                case ACTION_EDIT:
+                    employeesTabAction = ACTION_VIEW;
+                    changeTabButtonsMode(TAB_EMPLOYEES, ACTION_VIEW);
+                    displayEmployees();
+                    break;
+                case ACTION_VIEW:
+                    employeesTabAction = ACTION_EDIT;
+                    changeTabButtonsMode(TAB_EMPLOYEES, ACTION_EDIT);
+                    break;
+            }
+        }
+
+        private void employeesDeleteButton_Click(object sender, EventArgs e)
+        {
+
+            int id = textBoxEmployeeId.Text.Equals("") ? -1 : Int32.Parse(textBoxEmployeeId.Text);
+            if (id > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa nhân viên số " + id + " không?",
+                    "Xoá nhân viên", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    EmployeesBUS.deleteEmployee(id);
+                    displayEmployees();
+                    updateOrdersComboBoxes();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Do nothing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn nhân viên cần xóa!");
+            }
+        }
+
         private void OrdersEditButton_Click(object sender, EventArgs e)
         {
             switch (ordersTabAction)

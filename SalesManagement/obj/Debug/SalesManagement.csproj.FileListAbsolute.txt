@@ -25,3 +25,4 @@ F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.Properties.Resource
 F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csproj.GenerateResource.Cache
 F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.exe
 F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.pdb
+C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\obj\Debug\SalesManagement.pdb
