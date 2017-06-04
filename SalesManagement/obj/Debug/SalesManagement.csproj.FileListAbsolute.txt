@@ -26,3 +26,10 @@ F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csproj.GenerateReso
 F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.exe
 F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.pdb
 C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\obj\Debug\SalesManagement.pdb
+C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe
+C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\bin\Debug\SalesManagement.pdb
+C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csprojResolveAssemblyReference.cache
+C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\obj\Debug\SalesManagement.MainForm.resources
+C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\obj\Debug\SalesManagement.Properties.Resources.resources
+C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csproj.GenerateResource.Cache
+C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\obj\Debug\SalesManagement.exe

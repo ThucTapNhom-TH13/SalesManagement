@@ -55,7 +55,62 @@ namespace SalesManagement
         {
             InitializeComponent();
         }
+        private void updateCustomersInfo()
+        {
+            int currentIndex;
+            if (CustomersDataGridView.CurrentCell != null)
+            {
+                currentIndex = CustomersDataGridView.CurrentCell.RowIndex;
+            }
+            else
+            {
+                currentIndex = 0;
+            }
 
+            if (CustomersDataGridView.Rows[currentIndex].Cells[0].Value != null)
+            {
+                textBoxCustomerId.Text = CustomersDataGridView.Rows[currentIndex].Cells[0].Value.ToString();
+            }
+            if (CustomersDataGridView.Rows[currentIndex].Cells[1].Value != null)
+            {
+                textBoxCustomerName.Text = CustomersDataGridView.Rows[currentIndex].Cells[1].Value.ToString();
+            }
+            if (CustomersDataGridView.Rows[currentIndex].Cells[2].Value != null)
+            {
+                textBoxCustomerAddress.Text = CustomersDataGridView.Rows[currentIndex].Cells[2].Value.ToString();
+            }
+            if (CustomersDataGridView.Rows[currentIndex].Cells[3].Value != null)
+            {
+                textBoxCustomerPhone.Text = CustomersDataGridView.Rows[currentIndex].Cells[3].Value.ToString();
+            }
+        }
+
+
+        private Customer getCustomerFromInfoViews()
+        {
+            int id = textBoxCustomerId.Text.Equals("") ? -1 : Int32.Parse(textBoxCustomerId.Text);
+            string name = textBoxCustomerName.Text;
+            string address = textBoxCustomerAddress.Text;
+            string phone = textBoxCustomerPhone.Text;
+
+            Customer Customer = new Customer(id, name, address, phone);
+
+            return Customer;
+        }
+
+        private void setCustomerInfoViewsReadOnly(bool id, bool name, bool birth, bool address, bool phone)
+        {
+            textBoxCustomerId.ReadOnly = id;
+            textBoxCustomerName.ReadOnly = name;
+            textBoxCustomerAddress.ReadOnly = address;
+            textBoxCustomerPhone.ReadOnly = phone;
+        }
+        private void displayCustomers()
+        {
+            CustomersDataGridView.DataSource = CustomersBUS.getCustomersDataTable();
+
+            updateCustomersInfo();
+        }
         private void initTabsInfoViews()
         {
             suppliersInfoViews = new Control[4]
@@ -119,6 +174,27 @@ namespace SalesManagement
 
             // Module 1: Suppliers.
             displaySuppliers();
+            // init tabs's controls.
+            
+          
+
+            // Module 2: Employees.
+            displayEmployees();
+
+            // Module 3: Customers.
+            displayCustomers();
+
+            // Module 4: Categories.
+            displayCategories();
+
+            // Module 5: Products.
+            displayProducts();
+
+            // Module 6: Orders.
+            displayOrders();
+
+            // Module 7: Order Details.
+            displayOrderDetails();
         }
 
         /*************************************  Module 1: Suppliers - Start. *************************************/
@@ -881,6 +957,76 @@ namespace SalesManagement
             {
                 MessageBox.Show("Chọn nhân viên cần xóa!");
             }
+        }
+
+        private void customersAddButton_Click(object sender, EventArgs e)
+        {
+            switch (customersTabAction)
+            {
+                case ACTION_VIEW:
+                    customersTabAction = ACTION_ADD;
+                    changeTabButtonsMode(TAB_CUSTOMERS, ACTION_ADD);
+                    clearInfoViews(customersInfoViews);
+                    break;
+                case ACTION_ADD:
+                    customersTabAction = ACTION_VIEW;
+                    Customer Customer1 = getCustomerFromInfoViews();
+                    CustomersBUS.addCustomer(Customer1);
+                    displayCustomers();
+                    updateOrdersComboBoxes();
+                    changeTabButtonsMode(TAB_CUSTOMERS, ACTION_VIEW);
+                    break;
+                case ACTION_EDIT:
+                    customersTabAction = ACTION_VIEW;
+                    Customer Customer2 = getCustomerFromInfoViews();
+                    CustomersBUS.editCustomer(Customer2);
+                    displayCustomers();
+                    updateOrdersComboBoxes();
+                    changeTabButtonsMode(TAB_CUSTOMERS, ACTION_VIEW);
+                    break;
+            }
+        }
+
+        private void customersEditButton_Click(object sender, EventArgs e)
+        {
+            switch (customersTabAction)
+            {
+                case ACTION_ADD:
+                case ACTION_EDIT:
+                    customersTabAction = ACTION_VIEW;
+                    changeTabButtonsMode(TAB_CUSTOMERS, ACTION_VIEW);
+                    displayCustomers();
+                    break;
+                case ACTION_VIEW:
+                    customersTabAction = ACTION_EDIT;
+                    changeTabButtonsMode(TAB_CUSTOMERS, ACTION_EDIT);
+                    break;
+            }
+        }
+
+        private void customersDeleteButton_Click(object sender, EventArgs e)
+        {
+            int id = textBoxCustomerId.Text.Equals("") ? -1 : Int32.Parse(textBoxCustomerId.Text);
+            if (id > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa khách hàng số " + id + " không?",
+                    "Xoá khách hàng", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    CustomersBUS.deleteCustomer(id);
+                    displayCustomers();
+                    updateOrdersComboBoxes();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Do nothing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn khách hàng cần xóa!");
+            }
+
         }
 
         private void OrdersEditButton_Click(object sender, EventArgs e)

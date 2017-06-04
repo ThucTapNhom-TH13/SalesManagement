@@ -521,6 +521,7 @@
             this.customersDeleteButton.TabIndex = 2;
             this.customersDeleteButton.Text = "Xóa";
             this.customersDeleteButton.UseVisualStyleBackColor = true;
+            this.customersDeleteButton.Click += new System.EventHandler(this.customersDeleteButton_Click);
             // 
             // customersEditButton
             // 
@@ -530,6 +531,7 @@
             this.customersEditButton.TabIndex = 2;
             this.customersEditButton.Text = "Sửa";
             this.customersEditButton.UseVisualStyleBackColor = true;
+            this.customersEditButton.Click += new System.EventHandler(this.customersEditButton_Click);
             // 
             // customersAddButton
             // 
@@ -539,6 +541,7 @@
             this.customersAddButton.TabIndex = 2;
             this.customersAddButton.Text = "Thêm";
             this.customersAddButton.UseVisualStyleBackColor = true;
+            this.customersAddButton.Click += new System.EventHandler(this.customersAddButton_Click);
             // 
             // groupBox5
             // 
