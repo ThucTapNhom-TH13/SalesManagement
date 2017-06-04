@@ -445,7 +445,291 @@ namespace SalesManagement
                 MessageBox.Show("Chọn nhà cung cấp cần xóa!");
             }
         }
+        /**********************************  Module 4: Categories - Start. ***********************************/
 
+        private void displayCategories()
+        {
+            categoriesDataGridView.DataSource = CategoriesBUS.getCategoriesDataTable();
+
+            updateCategoryInfo();
+        }
+
+        private void updateCategoryInfo()
+        {
+            int currentIndex;
+            if (categoriesDataGridView.CurrentCell != null)
+            {
+                currentIndex = categoriesDataGridView.CurrentCell.RowIndex;
+            }
+            else
+            {
+                currentIndex = 0;
+            }
+
+            if (categoriesDataGridView.Rows[currentIndex].Cells[0].Value != null)
+            {
+                textBoxCategoryId.Text = categoriesDataGridView.Rows[currentIndex].Cells[0].Value.ToString();
+            }
+            if (categoriesDataGridView.Rows[currentIndex].Cells[1].Value != null)
+            {
+                textBoxCategoryName.Text = categoriesDataGridView.Rows[currentIndex].Cells[1].Value.ToString();
+            }
+            if (categoriesDataGridView.Rows[currentIndex].Cells[2].Value != null)
+            {
+                textBoxCategoryDescription.Text = categoriesDataGridView.Rows[currentIndex].Cells[2].Value.ToString();
+            }
+        }
+
+        private Category getCategoryFromInfoViews()
+        {
+            int id = textBoxCategoryId.Text.Equals("") ? -1 : Int32.Parse(textBoxCategoryId.Text);
+            string name = textBoxCategoryName.Text;
+            string description = textBoxCategoryDescription.Text;
+
+            Category Category = new Category(id, name, description);
+
+            return Category;
+        }
+
+        private void CategoriesEditButton_Click(object sender, EventArgs e)
+        {
+            switch (categoriesTabAction)
+            {
+                case ACTION_ADD:
+                case ACTION_EDIT:
+                    categoriesTabAction = ACTION_VIEW;
+                    changeTabButtonsMode(TAB_CATEGORIES, ACTION_VIEW);
+                    displayCategories();
+                    break;
+                case ACTION_VIEW:
+                    categoriesTabAction = ACTION_EDIT;
+                    changeTabButtonsMode(TAB_CATEGORIES, ACTION_EDIT);
+                    break;
+            }
+
+        }
+
+        private void CategoriesDeleteButton_Click(object sender, EventArgs e)
+        {
+            int id = textBoxCategoryId.Text.Equals("") ? -1 : Int32.Parse(textBoxCategoryId.Text);
+            if (id > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa loại hàng số " + id + " không?",
+                    "Xoá khách hàng", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    CategoriesBUS.deleteCategory(id);
+                    displayCategories();
+                    updateProductsComboBoxes();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Do nothing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn loại hàng cần xóa!");
+            }
+
+        }
+
+        private void CategoriesDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            updateCategoryInfo();
+        }
+
+        private void CategoriesAddButton_Click(object sender, EventArgs e)
+        {
+            switch (categoriesTabAction)
+            {
+                case ACTION_VIEW:
+                    categoriesTabAction = ACTION_ADD;
+                    changeTabButtonsMode(TAB_CATEGORIES, ACTION_ADD);
+                    clearInfoViews(categoriesInfoViews);
+                    break;
+                case ACTION_ADD:
+                    categoriesTabAction = ACTION_VIEW;
+                    Category Category1 = getCategoryFromInfoViews();
+                    CategoriesBUS.addCategory(Category1);
+                    displayCategories();
+                    updateProductsComboBoxes();
+                    changeTabButtonsMode(TAB_CATEGORIES, ACTION_VIEW);
+                    break;
+                case ACTION_EDIT:
+                    categoriesTabAction = ACTION_VIEW;
+                    Category Category2 = getCategoryFromInfoViews();
+                    CategoriesBUS.editCategory(Category2);
+                    displayCategories();
+                    updateProductsComboBoxes();
+                    changeTabButtonsMode(TAB_CATEGORIES, ACTION_VIEW);
+                    break;
+            }
+        }
+
+        /***********************************  Module 4: Categories - End. ************************************/
+        /***********************************  Module 5: Products - Start. ***********************************/
+
+        private void displayProducts()
+        {
+            productsDataGridView.DataSource = ProductsBUS.getProductsDataTable();
+
+            updateProductInfo();
+
+            updateProductsComboBoxes();
+        }
+
+        private void updateProductsComboBoxes()
+        {
+            ProductsBUS.loadCombobox(1, comboBoxProductsSupplierId);
+            ProductsBUS.loadCombobox(2, comboBoxProductsCategoryId);
+        }
+
+        private void updateProductInfo()
+        {
+            int currentIndex;
+            if (productsDataGridView.CurrentCell != null)
+            {
+                currentIndex = productsDataGridView.CurrentCell.RowIndex;
+            }
+            else
+            {
+                currentIndex = 0;
+            }
+
+            if (productsDataGridView.Rows[currentIndex].Cells[0].Value != null)
+            {
+                textBoxProductId.Text = productsDataGridView.Rows[currentIndex].Cells[0].Value.ToString();
+            }
+            if (productsDataGridView.Rows[currentIndex].Cells[1].Value != null)
+            {
+                textBoxProductName.Text = productsDataGridView.Rows[currentIndex].Cells[1].Value.ToString();
+            }
+            if (productsDataGridView.Rows[currentIndex].Cells[2].Value != null)
+            {
+                comboBoxProductsSupplierId.Text = productsDataGridView.Rows[currentIndex].Cells[2].Value.ToString();
+            }
+            if (productsDataGridView.Rows[currentIndex].Cells[3].Value != null)
+            {
+                comboBoxProductsCategoryId.Text = productsDataGridView.Rows[currentIndex].Cells[3].Value.ToString();
+            }
+            if (productsDataGridView.Rows[currentIndex].Cells[4].Value != null)
+            {
+                textBoxProductInputPrice.Text = productsDataGridView.Rows[currentIndex].Cells[4].Value.ToString();
+            }
+            if (productsDataGridView.Rows[currentIndex].Cells[5].Value != null)
+            {
+                textBoxProductOutputPrice.Text = productsDataGridView.Rows[currentIndex].Cells[5].Value.ToString();
+            }
+        }
+
+        private Product getProductFromInfoViews()
+        {
+            int id = textBoxProductId.Text.Equals("") ? -1 : Int32.Parse(textBoxProductId.Text);
+            string name = textBoxProductName.Text;
+            int supplierId = comboBoxProductsSupplierId.Text.Equals("") ? -1 :
+                Int32.Parse(comboBoxProductsSupplierId.Text);
+            int categoryId = comboBoxProductsCategoryId.Text.Equals("") ? -1 :
+                Int32.Parse(comboBoxProductsCategoryId.Text);
+
+            decimal input, output;
+            try
+            {
+                input = Decimal.Parse(textBoxProductInputPrice.Text);
+            }
+            catch (Exception e)
+            {
+                input = -1;
+            }
+
+            try
+            {
+                output = Decimal.Parse(textBoxProductOutputPrice.Text);
+            }
+            catch (Exception e)
+            {
+                output = -1;
+            }
+
+            Product product = new Product(id, name, supplierId, categoryId, input, output);
+
+            return product;
+        }
+
+        private void ProductsEditButton_Click(object sender, EventArgs e)
+        {
+            switch (productsTabAction)
+            {
+                case ACTION_ADD:
+                case ACTION_EDIT:
+                    productsTabAction = ACTION_VIEW;
+                    changeTabButtonsMode(TAB_PRODUCTS, ACTION_VIEW);
+                    displayCategories();
+                    break;
+                case ACTION_VIEW:
+                    productsTabAction = ACTION_EDIT;
+                    changeTabButtonsMode(TAB_PRODUCTS, ACTION_EDIT);
+                    break;
+            }
+
+        }
+
+        private void ProductsDeleteButton_Click(object sender, EventArgs e)
+        {
+            int id = textBoxProductId.Text.Equals("") ? -1 : Int32.Parse(textBoxProductId.Text);
+            if (id > 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa sản phẩm số " + id + " không?",
+                    "Xoá sản phẩm", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    ProductsBUS.deleteProduct(id);
+                    displayProducts();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Do nothing
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn sản phẩm cần xóa!");
+            }
+
+        }
+
+        private void ProductsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            updateProductInfo();
+        }
+
+        private void ProductsAddButton_Click(object sender, EventArgs e)
+        {
+            switch (productsTabAction)
+            {
+                case ACTION_VIEW:
+                    productsTabAction = ACTION_ADD;
+                    changeTabButtonsMode(TAB_PRODUCTS, ACTION_ADD);
+                    clearInfoViews(productsInfoViews);
+                    break;
+                case ACTION_ADD:
+                    productsTabAction = ACTION_VIEW;
+                    Product product1 = getProductFromInfoViews();
+                    ProductsBUS.addProduct(product1);
+                    displayProducts();
+                    changeTabButtonsMode(TAB_PRODUCTS, ACTION_VIEW);
+                    break;
+                case ACTION_EDIT:
+                    productsTabAction = ACTION_VIEW;
+                    Product product2 = getProductFromInfoViews();
+                    ProductsBUS.editProduct(product2);
+                    displayProducts();
+                    changeTabButtonsMode(TAB_PRODUCTS, ACTION_VIEW);
+                    break;
+            }
+        }
+
+        /***********************************  Module 5: Products - End. ************************************/
         /***********************************  Module 6: Orders - Start. ************************************/
 
         private void displayOrders()

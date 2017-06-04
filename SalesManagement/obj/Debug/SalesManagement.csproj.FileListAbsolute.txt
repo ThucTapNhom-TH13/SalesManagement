@@ -16,3 +16,12 @@ D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.P
 D:\Learning Projects\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csproj.GenerateResource.Cache
 C:\Users\Nguyen Linh\Documents\GitHub\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe.config
 C:\Users\Linh\Documents\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe.config
+F:\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe.config
+F:\SalesManagement\SalesManagement\bin\Debug\SalesManagement.exe
+F:\SalesManagement\SalesManagement\bin\Debug\SalesManagement.pdb
+F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csprojResolveAssemblyReference.cache
+F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.MainForm.resources
+F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.Properties.Resources.resources
+F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.csproj.GenerateResource.Cache
+F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.exe
+F:\SalesManagement\SalesManagement\obj\Debug\SalesManagement.pdb
