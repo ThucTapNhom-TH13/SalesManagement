@@ -11,7 +11,7 @@ namespace SalesManagement.DAL
     {
         public static SqlConnection getConnection()
         {
-            string connectionString = @"Data Source=LINH\SQLEXPRESS;Initial Catalog=SalesManagement;Integrated Security=True";
+            string connectionString = @"Data Source=BUMBLEBEE\SQLEXPRESS;Initial Catalog=SalesManagement;Integrated Security=True";
             SqlConnection connection = new SqlConnection(connectionString);
             return connection;
         }

@@ -591,7 +591,7 @@ namespace SalesManagement
             if (id > 0)
             {
                 DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa loại hàng số " + id + " không?",
-                    "Xoá khách hàng", MessageBoxButtons.YesNo);
+                    "Xoá loại hàng", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     CategoriesBUS.deleteCategory(id);
