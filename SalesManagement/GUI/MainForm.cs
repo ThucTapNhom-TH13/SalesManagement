@@ -270,7 +270,7 @@ namespace SalesManagement
 
         private void updateSuppliersInfo()
         {
-            int CurrentIndex = suppliersDataGridView.CurrentCell.RowIndex;
+           int CurrentIndex = suppliersDataGridView.CurrentCell.RowIndex;
 
             if (suppliersDataGridView.Rows[CurrentIndex].Cells[0].Value != null)
             {
@@ -1027,6 +1027,16 @@ namespace SalesManagement
                 MessageBox.Show("Chọn khách hàng cần xóa!");
             }
 
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+
+        }
+
+        private void salesManagementTabControl_MouseClick(object sender, MouseEventArgs e)
+        {
+            webBrowser1.Navigate("https://docs.google.com/document/d/1o3Ebu-LmSFUvatzSCy9NeV4EByuKcfNqd1Hr78hRSY0/edit");
         }
 
         private void OrdersEditButton_Click(object sender, EventArgs e)

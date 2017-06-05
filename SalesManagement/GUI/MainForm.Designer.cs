@@ -140,6 +140,8 @@
             this.label30 = new System.Windows.Forms.Label();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.orderDetailsDataGridView = new System.Windows.Forms.DataGridView();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.suppliersTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -169,6 +171,7 @@
             this.groupBox13.SuspendLayout();
             this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsDataGridView)).BeginInit();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // suppliersTab
@@ -328,11 +331,13 @@
             this.salesManagementTabControl.Controls.Add(this.tabPage4);
             this.salesManagementTabControl.Controls.Add(this.tabPage5);
             this.salesManagementTabControl.Controls.Add(this.tabPage6);
+            this.salesManagementTabControl.Controls.Add(this.tabPage7);
             this.salesManagementTabControl.Location = new System.Drawing.Point(1, 0);
             this.salesManagementTabControl.Name = "salesManagementTabControl";
             this.salesManagementTabControl.SelectedIndex = 0;
             this.salesManagementTabControl.Size = new System.Drawing.Size(797, 342);
             this.salesManagementTabControl.TabIndex = 0;
+            this.salesManagementTabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.salesManagementTabControl_MouseClick);
             // 
             // tabPage1
             // 
@@ -1258,6 +1263,26 @@
             this.orderDetailsDataGridView.Size = new System.Drawing.Size(517, 278);
             this.orderDetailsDataGridView.TabIndex = 0;
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.webBrowser1);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(789, 316);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "Hướng dẫn";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(789, 316);
+            this.webBrowser1.TabIndex = 0;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1305,6 +1330,7 @@
             this.groupBox13.PerformLayout();
             this.groupBox14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsDataGridView)).EndInit();
+            this.tabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1423,6 +1449,8 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.DataGridView orderDetailsDataGridView;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
 
